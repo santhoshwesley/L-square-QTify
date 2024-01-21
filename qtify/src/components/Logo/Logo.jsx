@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Logo.module.css";
-import LogoImage from "/CRIO/Qtify/qtify/src/assets/qtify_logo.png";
+import LogoImage from "../../assets/qtify_logo.png";
 function Logo() {
   return <img src={LogoImage} alt="logo" width={67} />;
 }
