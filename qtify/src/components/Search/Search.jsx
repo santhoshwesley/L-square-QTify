@@ -8,12 +8,7 @@ function Search() {
   }
   return (
     <form className={styles.wrapper}>
-      <input
-        type="text"
-        placeholder="Search a album of your choice"
-        required
-        className={styles.search}
-      />
+      <input type="text" required className={styles.search} />
       <button
         type="submit"
         className={styles.searchButton}

@@ -8,10 +8,10 @@ import Search from "../Search/Search";
 function Navbar() {
   return (
     <nav className={styles.navbar}>
-      <a href="">
+      <a href="/">
         <Logo />
       </a>
-      <Search />
+      <Search placeholder="Search a album of your choice" />
       <Button>Give feedback</Button>
     </nav>
   );
