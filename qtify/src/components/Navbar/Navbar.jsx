@@ -12,7 +12,7 @@ function Navbar() {
         <Logo />
       </a>
       <Search placeholder="Search a album of your choice" />
-      <Button>Give feedback</Button>
+      <Button>Give Feedback</Button>
     </nav>
   );
 }
