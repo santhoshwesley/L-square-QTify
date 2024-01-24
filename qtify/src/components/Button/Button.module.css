@@ -10,4 +10,5 @@
   background-color: var(--color-black);
   color: var(--color-primary);
   cursor: pointer;
+  font-weight: 600;
 }
