@@ -4,6 +4,8 @@ import Navbar from "./components/Navbar/Navbar";
 import Hero from "./components/Hero/Hero";
 import Section from "./components/Section/Section";
 import axios from "axios";
+import { Outlet } from "react-router-dom";
+import { fetchNewAlbums, fetchSongs, fetchTopAlbums } from "./api/api";
 
 async function fetchData(apiEndpoint) {
   try {
@@ -16,43 +18,34 @@ async function fetchData(apiEndpoint) {
 }
 
 function App() {
-  const topAlbumsEndpoint = "https://qtify-backend-labs.crio.do/albums/top";
-  const newAlbumsEndpoint = "https://qtify-backend-labs.crio.do/albums/new";
+  const [searchData, setSearchData] = useState();
+  const [data, setData] = useState();
 
-  const [topAlbums, setTopAlbums] = useState([]);
-  const [newAlbums, setNewAlbums] = useState([]);
+  const generateData = async (key, source) => {
+    const newData = await source();
+    setData((prevData) => ({ ...prevData, [key]: newData }));
+  };
 
   useEffect(() => {
-    const fetchTopAlbums = async () => {
-      const data = await fetchData(topAlbumsEndpoint);
-      setTopAlbums(data);
+    const fetchDataAndSetState = async () => {
+      await generateData("topAlbums", fetchTopAlbums);
+      await generateData("newAlbums", fetchNewAlbums);
+      await generateData("songs", fetchSongs);
     };
 
-    const fetchNewAlbums = async () => {
-      const data = await fetchData(newAlbumsEndpoint);
-      setNewAlbums(data);
-    };
-
-    fetchTopAlbums();
-    fetchNewAlbums();
+    fetchDataAndSetState();
   }, []);
+
+  if (!data) {
+    return null;
+  }
 
   return (
     <>
-      <Navbar />
-      <Hero />
-      <Section
-        title={`Top Albums`}
-        albums={topAlbums}
-        buttonName="Collapse"
-        showDivider={true}
-      />
-      <Section
-        title={`New Albums`}
-        albums={newAlbums}
-        buttonName="Show All"
-        showDivider={false}
-      />
+      <div>
+        <Navbar />
+        <Outlet context={{ data }} />
+      </div>
     </>
   );
 }

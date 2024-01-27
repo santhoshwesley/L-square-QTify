@@ -1,9 +1,8 @@
-// Cards.jsx
 import React from "react";
 import styles from "../Card/Card.module.css";
 import Chip from "@mui/material/Chip";
 import { Tooltip } from "@mui/material";
-
+import { Link } from "react-router-dom";
 function Card({ data, type }) {
   const getCard = (type) => {
     switch (type) {
@@ -11,7 +10,7 @@ function Card({ data, type }) {
         const { image, songs, slug, follows, title } = data;
         return (
           <Tooltip title={`${songs.length} songs`} placement="top" arrow>
-            <a className={styles.cardLink} href={`/albums/${slug}`}>
+            <Link to={`/albums/${slug}`} className={styles.cardLink}>
               <div className={styles.wrapper}>
                 <div className={styles.card}>
                   <img src={image} alt="album" loading="lazy" />
@@ -31,7 +30,7 @@ function Card({ data, type }) {
                   <p>{title}</p>
                 </div>
               </div>
-            </a>
+            </Link>
           </Tooltip>
         );
       }
