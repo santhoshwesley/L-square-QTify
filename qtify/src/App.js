@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
-import Hero from "./components/Hero/Hero";
-import Section from "./components/Section/Section";
+
 import axios from "axios";
 import { Outlet } from "react-router-dom";
-import { fetchNewAlbums, fetchSongs, fetchTopAlbums } from "./api/api";
+import { fetchNewAlbums, fetchTopAlbums, fetchSongs } from "./api/api";
 
 async function fetchData(apiEndpoint) {
   try {
@@ -20,7 +19,7 @@ async function fetchData(apiEndpoint) {
 function App() {
   const [searchData, setSearchData] = useState();
   const [data, setData] = useState();
-
+  console.log(data);
   const generateData = async (key, source) => {
     const newData = await source();
     setData((prevData) => ({ ...prevData, [key]: newData }));

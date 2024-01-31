@@ -41,7 +41,15 @@ function Card({ data, type }) {
             <div className={styles.card}>
               <img src={image} alt="song" loading="lazy" />
               <div className={styles.banner}>
-                <Chip />
+                <Chip
+                  label={`${likes} Likes`}
+                  size="small"
+                  className={styles.chip}
+                  style={{
+                    backgroundColor: "var(--color-black)",
+                    color: "var(--color-white)",
+                  }}
+                />
                 <p>{likes} Likes</p>
               </div>
             </div>

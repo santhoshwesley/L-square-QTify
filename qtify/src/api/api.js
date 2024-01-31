@@ -19,6 +19,7 @@ export const fetchNewAlbums = async () => {
 export const fetchSongs = async () => {
   try {
     const response = await axios.get(`${BACKEND_POINT}/songs`);
+
     return response.data;
   } catch (error) {
     console.error(error);
